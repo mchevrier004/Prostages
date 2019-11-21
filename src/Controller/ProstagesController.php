@@ -12,7 +12,6 @@ class ProstagesController extends AbstractController
      */
     public function index()
     {
-        echo "<h1>Bienvenue sur la page d'accueil de Prostages</h1>";
         return $this->render('prostages/index.html.twig', [
             'controller_name' => 'ProstagesController',
         ]);
@@ -22,7 +21,6 @@ class ProstagesController extends AbstractController
      */
     public function affEntreprises()
     {
-        echo "<h1>Cette page affichera la liste des entreprises proposant un stage</h1>";
         return $this->render('prostages/entreprises.html.twig', ['controller_name' => 'ProstagesController', ]);
     }
     /**
