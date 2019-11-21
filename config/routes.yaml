@@ -8,5 +8,5 @@
 #    path: /formations
 #    controller: App\Controller\DefaultController::affFormations
 #stages:
-#    path: /stages
+#    path: /stages/{etuID}
 #    controller: App\Controller\DefaultController::affStages
