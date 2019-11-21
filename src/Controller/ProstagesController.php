@@ -20,7 +20,7 @@ class ProstagesController extends AbstractController
     /**
      * @Route("/entreprises", name="prostagesEntreprises")
      */
-    public function afficherEntreprises()
+    public function affEntreprises()
     {
         echo "<h1>Cette page affichera la liste des entreprises proposant un stage</h1>";
         return $this->render('prostages/entreprises.html.twig', ['controller_name' => 'ProstagesController', ]);
@@ -28,7 +28,7 @@ class ProstagesController extends AbstractController
     /**
      * @Route("/formations", name="prostagesFormations")
      */
-    public function afficherFormations()
+    public function affFormations()
     {
         echo "<h1>Cette page affichera la liste des formations de l'IUT</h1>";
         return $this->render('prostages/formations.html.twig', ['controller_name' => 'ProstagesController', ]);
@@ -36,7 +36,7 @@ class ProstagesController extends AbstractController
     /**
      * @Route("/stages/{etuID}", name="prostagesStages")
      */
-    public function afficherStages()
+    public function affStages()
     {
         $etuID=$this->getUser();
         echo "<h1>Cette page affichera le descriptif du stage ayant pour identifiant $etuID</h1>";
