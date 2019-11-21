@@ -38,7 +38,6 @@ class ProstagesController extends AbstractController
      */
     public function affStages()
     {
-        $etuID=$this->getUser();
         echo "<h1>Cette page affichera le descriptif du stage ayant pour identifiant $etuID</h1>";
         return $this->render('prostages/stages.html.twig', ['controller_name' => 'ProstagesController', ]);
     }
