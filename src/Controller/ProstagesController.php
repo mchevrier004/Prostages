@@ -36,9 +36,8 @@ class ProstagesController extends AbstractController
     /**
      * @Route("/stages/{etuID}", name="prostagesStages")
      */
-    public function affStages()
+    public function affStages($etuID)
     {
-        $etuID=intval($_GET['{etuID}']);
         echo "<h1>Cette page affichera le descriptif du stage ayant pour identifiant $etuID</h1>";
         return $this->render('prostages/stages.html.twig', ['controller_name' => 'ProstagesController', ]);
     }
