@@ -34,7 +34,7 @@ class ProstagesController extends AbstractController
         return $this->render('prostages/formations.html.twig', ['controller_name' => 'ProstagesController', ]);
     }
     /**
-     * @Route("/stages/{etuID}", name="prostagesStages")
+     * @Route("/stages/{$etuID}", name="prostagesStages")
      */
     public function affStages()
     {
