@@ -28,15 +28,13 @@ class ProstagesController extends AbstractController
      */
     public function affFormations()
     {
-        echo "<h1>Cette page affichera la liste des formations de l'IUT</h1>";
         return $this->render('prostages/formations.html.twig', ['controller_name' => 'ProstagesController', ]);
     }
     /**
      * @Route("/stages/{etuID}", name="prostagesStages")
      */
-    public function affStages($etuID)
+    public function affStages()
     {
-        echo "<h1>Cette page affichera le descriptif du stage ayant pour identifiant $etuID</h1>";
         return $this->render('prostages/stages.html.twig', ['controller_name' => 'ProstagesController', ]);
     }
 }
