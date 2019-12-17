@@ -17,24 +17,24 @@ class ProstagesController extends AbstractController
         ]);
     }
     /**
-     * @Route("/entreprises", name="prostagesEntreprises")
+     * @Route("/prostages/entreprises", name="prostagesEntreprises")
      */
     public function affEntreprises()
     {
         return $this->render('prostages/entreprises.html.twig', ['controller_name' => 'ProstagesController', ]);
     }
     /**
-     * @Route("/formations", name="prostagesFormations")
+     * @Route("/prostages/formations", name="prostagesFormations")
      */
     public function affFormations()
     {
         return $this->render('prostages/formations.html.twig', ['controller_name' => 'ProstagesController', ]);
     }
     /**
-     * @Route("/stages/{etuID}", name="prostagesStages")
+     * @Route("/prostages/stages/{idEtu}", name="prostagesStages")
      */
-    public function affStages()
+    public function affStages($idEtu)
     {
-        return $this->render('prostages/stages.html.twig', ['controller_name' => 'ProstagesController', ]);
+        return $this->render('prostages/stages.html.twig', ['controller_name' => 'ProstagesController', 'idEtu' => $idEtu]);
     }
 }
