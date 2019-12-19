@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Page des stages{% endblock %}
+
+{% block body %}
+<form action="stages/{idEtu}" method="POST">
+    <h1>Veuillez saisir un identifiant d'étudiant : </h1>
+    <input type="text" name="numEtuStages"><br><br>
+    <input type="submit" value="Chercher des stages">
+</form>
+
+{% endblock %}
