@@ -38,6 +38,16 @@ class Entreprise
      */
     private $stages;
 
+    /**
+     * @ORM\Column(type="string", length=100)
+     */
+    private $adresse;
+
+    /**
+     * @ORM\Column(type="string", length=20)
+     */
+    private $tel;
+
     public function __construct()
     {
         $this->stages = new ArrayCollection();
@@ -111,6 +121,30 @@ class Entreprise
                 $stage->setEntreprise(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getAdresse(): ?string
+    {
+        return $this->adresse;
+    }
+
+    public function setAdresse(string $adresse): self
+    {
+        $this->adresse = $adresse;
+
+        return $this;
+    }
+
+    public function getTel(): ?string
+    {
+        return $this->tel;
+    }
+
+    public function setTel(string $tel): self
+    {
+        $this->tel = $tel;
 
         return $this;
     }
