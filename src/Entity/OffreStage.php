@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -35,6 +37,22 @@ class OffreStage
      * @ORM\Column(type="string", length=15, nullable=true)
      */
     private $Tel;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\Formation", mappedBy="stage")
+     */
+    private $formations;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Entreprise", inversedBy="stages")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $entreprise;
+
+    public function __construct()
+    {
+        $this->formations = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -85,6 +103,46 @@ class OffreStage
     public function setTel(?string $Tel): self
     {
         $this->Tel = $Tel;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Formation[]
+     */
+    public function getFormations(): Collection
+    {
+        return $this->formations;
+    }
+
+    public function addFormation(Formation $formation): self
+    {
+        if (!$this->formations->contains($formation)) {
+            $this->formations[] = $formation;
+            $formation->addStage($this);
+        }
+
+        return $this;
+    }
+
+    public function removeFormation(Formation $formation): self
+    {
+        if ($this->formations->contains($formation)) {
+            $this->formations->removeElement($formation);
+            $formation->removeStage($this);
+        }
+
+        return $this;
+    }
+
+    public function getEntreprise(): ?Entreprise
+    {
+        return $this->entreprise;
+    }
+
+    public function setEntreprise(?Entreprise $entreprise): self
+    {
+        $this->entreprise = $entreprise;
 
         return $this;
     }

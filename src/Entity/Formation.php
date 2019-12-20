@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -25,6 +27,16 @@ class Formation
      * @ORM\Column(type="string", length=50)
      */
     private $diplome;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\OffreStage", inversedBy="formations")
+     */
+    private $stage;
+
+    public function __construct()
+    {
+        $this->stage = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -51,6 +63,32 @@ class Formation
     public function setDiplome(string $diplome): self
     {
         $this->diplome = $diplome;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|OffreStage[]
+     */
+    public function getStage(): Collection
+    {
+        return $this->stage;
+    }
+
+    public function addStage(OffreStage $stage): self
+    {
+        if (!$this->stage->contains($stage)) {
+            $this->stage[] = $stage;
+        }
+
+        return $this;
+    }
+
+    public function removeStage(OffreStage $stage): self
+    {
+        if ($this->stage->contains($stage)) {
+            $this->stage->removeElement($stage);
+        }
 
         return $this;
     }
