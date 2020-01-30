@@ -21,15 +21,18 @@ class AppFixtures extends Fixture
             $stage->setMail($faker->email);
             $stage->setTel($faker->phoneNumber);
             $stage->addFormation($faker->randomElement('DUT Informatique','DU TIC','GIM','DUT GEA','LP Info'));
+            $manager->persist($stage);
             $entreprise = new Entreprise;
             $entreprise->setNom($faker->company);
             $entreprise->setType($faker->randomElement('Développement Web','Programmation informatique'));
             $entreprise->setSite($faker->url);
             $entreprise->setAdresse($faker->address);
             $entreprise->setTel($faker->phoneNumber);
+            $manager->persist($entreprise);
             $formation = new Formation;
             $formation->setNom($faker->randomElement('DUT Informatique','DU TIC','GIM','DUT GEA','LP Info'));
             $formation->setDiplome($faker->randomElement('Bac+1','Bac+2','Bac+3','Bac+4','Bac+5'));
+            $manager->persist($formation);
         }
         // $product = new Product();
         // $manager->persist($product);
