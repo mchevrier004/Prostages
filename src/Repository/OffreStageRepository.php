@@ -19,6 +19,22 @@ class OffreStageRepository extends ServiceEntityRepository
         parent::__construct($registry, OffreStage::class);
     }
 
+
+    /**
+     * @return OffreStage[] Returns an array of OffreStage objects
+     */
+    
+    public function findByExampleField($nomEnt)
+    {
+        return $this->createQueryBuilder('o')
+            ->join('o','e.stages')
+            ->andWhere('e.nom = :nomEnt')
+            ->setParameter('nomEnt', $nomEnt)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+    
     // /**
     //  * @return OffreStage[] Returns an array of OffreStage objects
     //  */
