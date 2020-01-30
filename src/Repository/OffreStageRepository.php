@@ -24,8 +24,9 @@ class OffreStageRepository extends ServiceEntityRepository
      * @return OffreStage[] Returns an array of OffreStage objects
      */
     
-    public function findByExampleField($nomEnt)
+    public function findByNomEntreprise($nomEnt)
     {
+
         return $this->createQueryBuilder('o')
             ->join('o','e.stages')
             ->andWhere('e.nom = :nomEnt')
@@ -33,6 +34,28 @@ class OffreStageRepository extends ServiceEntityRepository
             ->getQuery()
             ->getResult()
         ;
+    }
+
+    /**
+     * @return OffreStage[] Returns an array of OffreStage objects
+     */
+    
+    public function findByFormation($formation)
+    {
+        //Récupération du gestionnaire d'entité
+        $gestionnaireEntite = $this->getEntityManager();
+
+        //Construction de la requête
+        $requete = $gestionnaireEntite->createQuery(
+            'SELECT o
+             FROM App\Entity\OffreStage o
+             WHERE o.formation = :nomF');
+        
+        //Définition de la valeur du paramètre nomF
+        $requete->setParameter('nomF', $formation);
+
+        //Retourner les résultats
+        return $requete->execute();
     }
     
     // /**
