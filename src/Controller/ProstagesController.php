@@ -22,7 +22,10 @@ class ProstagesController extends AbstractController
      */
     public function affEntreprises()
     {
-        return $this->render('prostages/entreprises.html.twig', ['controller_name' => 'ProstagesController', ]);
+        $listeEntreprises = $this->getDoctrine()->getRepository(Entreprise::class)->findAll();
+
+        return $this->render('prostages/entreprises.html.twig', ['controller_name' => 'ProstagesController', 
+                                                                 'listeEntreprises' => $listeEntreprises]);
     }
     /**
      * @Route("/prostages/formations", name="prostagesFormations")

@@ -6,6 +6,18 @@
 
 <h3>Cette page affichera la liste des entreprises proposant un stage</h3>
 
+<div class="container">
+
+    {% for entreprise in listeEntreprises %}
+    <div class="row">
+      <div class="col-sm">
+        {{ entreprise.nom }}
+      </div>      
+    </div>
+    {% endfor %}
+
+</div>
+
 <h4><a href='/prostages/entreprises/ajouter'>Ajouter une entreprise</a><br></h4>
 <h4><a href='/prostages/'>Revenir à l'accueil</a><br></h4>
 
