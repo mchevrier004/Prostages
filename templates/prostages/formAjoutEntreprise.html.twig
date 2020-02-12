@@ -6,7 +6,33 @@
 
 <h3>Formulaire d'ajout d'entreprises</h3>
 
-{{ form(vueFormEntreprise) }}
+{{ form_start (vueFormEntreprise) }}
+<div>
+    {{ form_label (vueFormEntreprise.nom) }}
+    {{ form_errors (vueFormEntreprise.nom) }}
+    {{ form_widget (vueFormEntreprise.nom) }}
+</div>
+<div>
+        {{ form_label (vueFormEntreprise.type) }}
+        {{ form_errors (vueFormEntreprise.type) }}
+        {{ form_widget (vueFormEntreprise.type) }}
+</div>
+<div>
+        {{ form_label (vueFormEntreprise.site) }}
+        {{ form_errors (vueFormEntreprise.site) }}
+        {{ form_widget (vueFormEntreprise.site) }}
+</div>
+<div>
+        {{ form_label (vueFormEntreprise.adresse) }}
+        {{ form_errors (vueFormEntreprise.adresse) }}
+        {{ form_widget (vueFormEntreprise.adresse) }}
+</div>
+<div>
+        {{ form_label (vueFormEntreprise.tel) }}
+        {{ form_errors (vueFormEntreprise.tel) }}
+        {{ form_widget (vueFormEntreprise.tel) }}
+</div>
+{{ form_end (vueFormEntreprise) }}
 
 <h4><a href='/prostages/entreprises'>Revenir à la liste des entreprises</a><br></h4>
 <h4><a href='/prostages'>Revenir à l'accueil</a><br></h4>

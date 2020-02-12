@@ -5,6 +5,10 @@ namespace App\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\Entreprise;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Form\Extension\Core\Type\UrlType;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\TelType;
 
 class ProstagesController extends AbstractController
 {
@@ -44,7 +48,7 @@ class ProstagesController extends AbstractController
     /**
      * @Route("/prostages/entreprises/ajouter", name="prostagesEntreprisesForm")
      */
-    public function affFormEntreprises()
+    public function affFormEntreprises(Request $requeteHttp)
     {
         // Création d'une entreprise vierge
         $entreprise = new Entreprise();
@@ -53,11 +57,24 @@ class ProstagesController extends AbstractController
         $formulaireEntreprise = $this -> createFormBuilder($entreprise)
                                       -> add('nom')
                                       -> add('type')
-                                      -> add('site')
+                                      -> add('site',UrlType::class)
                                       -> add('adresse')
-                                      -> add('tel')
+                                      -> add('tel',TelType::class)
                                       -> getForm();
         // Les stages ne seront saisis qu'après la saisie des détails de l'entreprise
+
+        $formulaireEntreprise -> handleRequest($requeteHttp);
+
+        // Vérification des saisies, soumission du formulaire
+        if($formulaireEntreprise -> isSubmitted()  && $formulaireEntreprise -> isValid()){
+
+            // Enregistrement de l'entreprise en BD
+            $manager->persist($entreprise);
+            $manager->flush();
+
+            // Redirection de l'utilisateur vers la liste des entreprises
+            return $this -> redirectToRoute('prostagesEntreprises');
+        }
 
         // Générer la vue représentant le formulaire
         $vueFormEntreprise = $formulaireEntreprise -> createView();

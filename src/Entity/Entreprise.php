@@ -5,6 +5,7 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\EntrepriseRepository")
@@ -20,16 +21,23 @@ class Entreprise
 
     /**
      * @ORM\Column(type="string", length=100)
+     * @Assert\NotBlank(message = "Vous devez saisir le nom de l'entreprise.")
+     * @Assert\Length(
+     *      min = 4,
+     *      minMessage = "Le nom de l'entreprise doit comporter au moins 4 caractères."
+     * )
      */
     private $nom;
 
     /**
      * @ORM\Column(type="string", length=50)
+     * @Assert\NotBlank(message = "Vous devez saisir le type de l'entreprise (son activité).")
      */
     private $type;
 
     /**
      * @ORM\Column(type="string", length=100, nullable=true)
+     * @Assert\Url(message = "Cette adresse url est invalide.")
      */
     private $site;
 
