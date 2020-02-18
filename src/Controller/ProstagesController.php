@@ -9,6 +9,8 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Form\Extension\Core\Type\UrlType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\TelType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 
 class ProstagesController extends AbstractController
 {
@@ -55,11 +57,12 @@ class ProstagesController extends AbstractController
 
         // Création d'un formulaire pour saisir les détails d'une entreprise
         $formulaireEntreprise = $this -> createFormBuilder($entreprise)
-                                      -> add('nom')
-                                      -> add('type')
-                                      -> add('site',UrlType::class)
-                                      -> add('adresse')
-                                      -> add('tel',TelType::class)
+                                      -> add('nom', TextType::class, ['label' => 'Nom de l\'entreprise : '])
+                                      -> add('type', TextType::class, ['label' => 'Activité : '])
+                                      -> add('site',UrlType::class, ['label' => 'Site web : '])
+                                      -> add('adresse', TextType::class, ['label' => 'Adresse : '])
+                                      -> add('tel',TelType::class, ['label' => 'Numéro de téléphone : '])
+                                      -> add('save',SubmitType::class, ['label' => 'Créer une entreprise'])
                                       -> getForm();
         // Les stages ne seront saisis qu'après la saisie des détails de l'entreprise
 
