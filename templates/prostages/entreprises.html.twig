@@ -4,17 +4,46 @@
 
 {% block body %}
 
+<style>
+	.col-container{
+		display: flex;
+		width: 100%;
+	}
+
+	.col {
+		flex: 1;
+		padding: 16px;
+	}
+</style>
+
 <h3>Cette page affichera la liste des entreprises proposant un stage</h3>
 
-<div class="container">
+<div class="table">
 
-    {% for entreprise in listeEntreprises %}
-    <div class="row">
-      <div class="col-sm">
-        {{ entreprise.nom }}
-      </div>      
-    </div>
-    {% endfor %}
+
+	<div class="row">
+		{% for entreprise in listeEntreprises %}
+		<div class="col-md-4">
+			<div class="jumbotron">
+				<h2>
+					{{ entreprise.nom }}
+				</h2>
+				<h4>
+					{{ entreprise.type }}
+				</h4>
+				<p>
+					{{ entreprise.site }}
+				</p>
+				<p>
+					{{ entreprise.adresse }}
+				</p>
+				<h4>
+					{{ entreprise.tel }}
+				</h4>
+			</div>
+		</div>
+		{% endfor %}
+	</div>
 
 </div>
 

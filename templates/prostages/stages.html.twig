@@ -8,4 +8,33 @@
 
 <h4><a href='/prostages'>Revenir à l'accueil</a><br></h4>
 
+<div class="table">
+
+
+	<div class="row">
+		{% for stage in listeStages %}
+		<div class="col-md-4">
+			<div class="jumbotron">
+				<h2>
+					{{ stage.Nom }}
+                </h2>
+				<p>
+					{{ stage.Description }}
+				</p>
+				<h4>
+                    Entreprise : {{ stage.entreprise.nom }}
+                </h4>
+                <h4>
+                    Contactez-nous : {{ stage.Mail }}
+                </h4>
+                <h4>
+                    Téléphone : {{ stage.Tel }}
+                </h4>
+			</div>
+		</div>
+		{% endfor %}
+	</div>
+
+</div>
+
 {% endblock %}

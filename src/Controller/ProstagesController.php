@@ -5,12 +5,16 @@ namespace App\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\Entreprise;
+use App\Entity\OffreStage;
+use App\Entity\Formation;
+use App\Form\EntrepriseType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Form\Extension\Core\Type\UrlType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\TelType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Doctrine\Common\Persistence\ObjectManager;
 
 class ProstagesController extends AbstractController
 {
@@ -38,32 +42,32 @@ class ProstagesController extends AbstractController
      */
     public function affFormations()
     {
-        return $this->render('prostages/formations.html.twig', ['controller_name' => 'ProstagesController', ]);
+        $listeFormations = $this->getDoctrine()->getRepository(Formation::class)->findByNomASC();
+
+        return $this->render('prostages/formations.html.twig', ['controller_name' => 'ProstagesController',
+                                                                'listeFormations' => $listeFormations]);
     }
     /**
      * @Route("/prostages/stages/{idEtu}", name="prostagesStages")
      */
     public function affStages($idEtu)
     {
-        return $this->render('prostages/stages.html.twig', ['controller_name' => 'ProstagesController', 'idEtu' => $idEtu]);
+        $listeStages = $this->getDoctrine()->getRepository(OffreStage::class)->findAll();
+        $listeFormations = $this->getDoctrine()->getRepository(Formation::class)->findAll();
+        return $this->render('prostages/stages.html.twig', ['controller_name' => 'ProstagesController', 'idEtu' => $idEtu,
+                                                            'listeStages' => $listeStages,
+                                                            'listeFormations' => $listeFormations]);
     }
     /**
      * @Route("/prostages/entreprises/ajouter", name="prostagesEntreprisesForm")
      */
-    public function affFormEntreprises(Request $requeteHttp)
+    public function affFormEntreprises(Request $requeteHttp, ObjectManager $manager)
     {
         // Création d'une entreprise vierge
         $entreprise = new Entreprise();
 
         // Création d'un formulaire pour saisir les détails d'une entreprise
-        $formulaireEntreprise = $this -> createFormBuilder($entreprise)
-                                      -> add('nom', TextType::class, ['label' => 'Nom de l\'entreprise : '])
-                                      -> add('type', TextType::class, ['label' => 'Activité : '])
-                                      -> add('site',UrlType::class, ['label' => 'Site web : '])
-                                      -> add('adresse', TextType::class, ['label' => 'Adresse : '])
-                                      -> add('tel',TelType::class, ['label' => 'Numéro de téléphone : '])
-                                      -> add('save',SubmitType::class, ['label' => 'Créer une entreprise'])
-                                      -> getForm();
+        $formulaireEntreprise = $this -> createForm(EntrepriseType::class, $entreprise);
         // Les stages ne seront saisis qu'après la saisie des détails de l'entreprise
 
         $formulaireEntreprise -> handleRequest($requeteHttp);

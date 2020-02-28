@@ -4,7 +4,37 @@
 
 {% block body %}
 
+<style>
+    table,
+    th,
+    tr {
+        border: 4px solid black;
+    }
+</style>
+
 <h3>Cette page affichera la liste des formations disponibles</h3>
+
+<table>
+    <tr>
+        <th><h3>Nom de la formation</h3></th>
+        <th><h3>Diplôme concerné</h3></th>
+    </tr>
+
+    {% for formation in listeFormations %}
+    <tr>
+        <th>
+            <h3>
+                {{ formation.nom }}
+            </h3>
+        </th>
+        <th>
+            <h4>
+                {{ formation.diplome }}
+            </h4>
+        </th>
+    </tr>
+    {% endfor %}
+</table>
 
 <h4><a href='/prostages'>Revenir à l'accueil</a><br></h4>
 
