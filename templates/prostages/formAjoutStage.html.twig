@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Page d'ajout de stage{% endblock %}
+
+{% block body %}
+
+<h3>Formulaire d'ajout de stage</h3>
+{% form_theme vueFormStage 'foundation_5_layout.html.twig' %}
+{{ form_start (vueFormStage) }}
+<div>
+    {{ form_label (vueFormStage.entreprise) }}
+    {{ form_errors (vueFormStage.entreprise) }}
+    {{ form_widget (vueFormStage.entreprise) }}
+</div>
+<div>
+        {{ form_label (vueFormStage.Nom) }}
+        {{ form_errors (vueFormStage.Nom) }}
+        {{ form_widget (vueFormStage.Nom) }}
+</div>
+<div>
+        {{ form_label (vueFormStage.Description) }}
+        {{ form_errors (vueFormStage.Description) }}
+        {{ form_widget (vueFormStage.Description) }}
+</div>
+<div>
+        {{ form_label (vueFormStage.Mail) }}
+        {{ form_errors (vueFormStage.Mail) }}
+        {{ form_widget (vueFormStage.Mail) }}
+</div>
+<div>
+        {{ form_label (vueFormStage.Tel) }}
+        {{ form_errors (vueFormStage.Tel) }}
+        {{ form_widget (vueFormStage.Tel) }}
+</div>
+<div>
+        {{ form_label (vueFormStage.formations) }}
+        {{ form_errors (vueFormStage.formations) }}
+        {{ form_widget (vueFormStage.formations) }}
+</div>
+{{ form_end (vueFormStage) }}
+
+<h4><a href='/prostages/stages/0'>Revenir à la liste des stages</a><br></h4>
+<h4><a href='/prostages'>Revenir à l'accueil</a><br></h4>
+
+{% endblock %}

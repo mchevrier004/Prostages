@@ -8,6 +8,7 @@ use App\Entity\Entreprise;
 use App\Entity\OffreStage;
 use App\Entity\Formation;
 use App\Form\EntrepriseType;
+use App\Form\OffreStageType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Form\Extension\Core\Type\UrlType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
@@ -52,8 +53,11 @@ class ProstagesController extends AbstractController
      */
     public function affStages($idEtu)
     {
+        //Récupération des stages et des formations
         $listeStages = $this->getDoctrine()->getRepository(OffreStage::class)->findAll();
         $listeFormations = $this->getDoctrine()->getRepository(Formation::class)->findAll();
+
+        //Envoi des informations à la vue
         return $this->render('prostages/stages.html.twig', ['controller_name' => 'ProstagesController', 'idEtu' => $idEtu,
                                                             'listeStages' => $listeStages,
                                                             'listeFormations' => $listeFormations]);
@@ -89,5 +93,21 @@ class ProstagesController extends AbstractController
         // Afficher le page d'ajout d'une entreprise
         return $this -> render('prostages/formAjoutEntreprise.html.twig',
                                ['vueFormEntreprise' => $vueFormEntreprise]);
+    }
+    /**
+     * @Route("/prostages/stage-ajout", name="prostagesStageForm")
+     */
+    public function affFormStages(Request $requeteHttp, ObjectManager $manager){
+        $stage = new OffreStage();
+        $formStage = $this -> createForm(OffreStageType::class, $stage);
+        $formStage -> handleRequest($requeteHttp);
+        if($formStage -> isSubmitted() && $formStage -> isValid()){
+            $manager -> persist($stage);
+            $manager -> flush();
+            return $this -> redirectToRoute('prostagesStages');
+        }
+        $vueFormStage = $formStage -> createView();
+        return $this -> render('prostages/formAjoutStage.html.twig',
+                                ['vueFormStage' => $vueFormStage]);
     }
 }
