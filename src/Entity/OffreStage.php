@@ -5,6 +5,7 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\OffreStageRepository")
@@ -25,11 +26,17 @@ class OffreStage
 
     /**
      * @ORM\Column(type="string", length=50)
+     * @Assert\NotBlank(message = "Veuillez renseigner un nom")
+     * @Assert\Length(
+     * min = 5,
+     * minMessage = "Le nom du stage doit comporter au moins 5 caractères"
+     * )
      */
     private $Nom;
 
     /**
      * @ORM\Column(type="string", length=100)
+     * @Assert\NotBlank(message = "Veuillez renseigner une adresse email")
      */
     private $Mail;
 

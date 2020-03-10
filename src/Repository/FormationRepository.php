@@ -25,6 +25,13 @@ class FormationRepository extends ServiceEntityRepository
             ->getQuery()
             ->getResult();
     }
+
+    public function getUniqueNoms(){
+        return $this->createQuery(
+            'SELECT DISTINCT f FROM App\Entity\Formation f'
+        )
+        ->getResult();
+    }
     
     // /**
     //  * @return Formation[] Returns an array of Formation objects
