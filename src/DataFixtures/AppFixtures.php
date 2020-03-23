@@ -41,16 +41,16 @@ class AppFixtures extends Fixture
 
             $manager->persist($stage);
         }
-        $user1 = new User();
-        $user1->setName("testAdmin");
-        $user1->setPassword("$2y$10\$txg2q76UA9h3/3Rx0yne.uS26Dpg0dRyZZmQSzb26NZbJbzJcFcfe");
-        $user1->setRole("ROLE_ADMIN");
-        $user2 = new User();
-        $user2->setName("testUser");
-        $user2->setPassword("$2y$10\$rSsBNcYM4Inm1Wk/dArVnu4WLmt5c08vBUf6Eul9Iw6h2TLKq2ulS");
-        $user2->setRole("ROLE_USER");
-        $manager->persist($user1);
-        $manager->persist($user2);
+        $testAdmin = new User();
+        $testAdmin->setUsername("testAdmin");
+        $testAdmin->setPassword('$2y$10$xGA/WI3VlFlZYg5hHj18y.H3QJADTpW/P6zIDjyMmJI1En6yy7dSO');
+        $testAdmin->setRoles(["ROLE_ADMIN"]);
+        $testUser = new User();
+        $testUser->setUsername("testUser");
+        $testUser->setPassword('$2y$10$KwO/a8TN2DbZEHHxwx4LdO5PtL6UXOu3c5/uMvZFIaKC6osPCetMW');
+        $testUser->setRoles(["ROLE_USER"]);
+        $manager->persist($testAdmin);
+        $manager->persist($testUser);
         // $product = new Product();
         // $manager->persist($product);
 

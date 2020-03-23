@@ -13,3 +13,7 @@
 #selectStagesEtu:
 #    path: /stages
 #    controller: App\Controller\DefaultController::affSelectStagesEtu
+#login:
+#  path: /login
+#  controller: App\Controller\SecurityController::login
+#  methods: GET|POST
