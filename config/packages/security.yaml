@@ -22,6 +22,7 @@ security:
 
             logout:
                 path: app_logout
+                target: prostagesAccueil
             guard:
                 authenticators:
                     - App\Security\LoginFormProstagesAuthenticator
