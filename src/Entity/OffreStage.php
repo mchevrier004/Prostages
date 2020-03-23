@@ -41,7 +41,7 @@ class OffreStage
     private $Mail;
 
     /**
-     * @ORM\Column(type="string", length=15, nullable=true)
+     * @ORM\Column(type="string", length=30, nullable=true)
      */
     private $Tel;
 

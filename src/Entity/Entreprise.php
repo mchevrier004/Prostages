@@ -36,7 +36,7 @@ class Entreprise
     private $type;
 
     /**
-     * @ORM\Column(type="string", length=100, nullable=true)
+     * @ORM\Column(type="string", length=200, nullable=true)
      * @Assert\Url(message = "Cette adresse url est invalide.")
      */
     private $site;
@@ -47,7 +47,7 @@ class Entreprise
     private $stages;
 
     /**
-     * @ORM\Column(type="string", length=100)
+     * @ORM\Column(type="string", length=200)
      */
     private $adresse;
 
