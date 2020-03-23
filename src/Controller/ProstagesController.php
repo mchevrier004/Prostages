@@ -20,36 +20,36 @@ use Doctrine\Common\Persistence\ObjectManager;
 class ProstagesController extends AbstractController
 {
     /**
-     * @Route("/", name="prostagesAccueil")
+     * @Route("/prostages", name="prostagesAccueil")
      */
     public function index()
     {
-        return $this->render('index.html.twig', [
+        return $this->render('prostages/index.html.twig', [
             'controller_name' => 'ProstagesController',
         ]);
     }
     /**
-     * @Route("/entreprises", name="prostagesEntreprises")
+     * @Route("/prostages/entreprises", name="prostagesEntreprises")
      */
     public function affEntreprises()
     {
         $listeEntreprises = $this->getDoctrine()->getRepository(Entreprise::class)->findAll();
 
-        return $this->render('entreprises.html.twig', ['controller_name' => 'ProstagesController', 
+        return $this->render('prostages/entreprises.html.twig', ['controller_name' => 'ProstagesController', 
                                                                  'listeEntreprises' => $listeEntreprises]);
     }
     /**
-     * @Route("/formations", name="prostagesFormations")
+     * @Route("/prostages/formations", name="prostagesFormations")
      */
     public function affFormations()
     {
         $listeFormations = $this->getDoctrine()->getRepository(Formation::class)->findByNomASC();
 
-        return $this->render('formations.html.twig', ['controller_name' => 'ProstagesController',
+        return $this->render('prostages/formations.html.twig', ['controller_name' => 'ProstagesController',
                                                                 'listeFormations' => $listeFormations]);
     }
     /**
-     * @Route("/stages/{idEtu}", name="prostagesStages")
+     * @Route("/prostages/stages/{idEtu}", name="prostagesStages")
      */
     public function affStages($idEtu)
     {
@@ -58,12 +58,12 @@ class ProstagesController extends AbstractController
         $listeFormations = $this->getDoctrine()->getRepository(Formation::class)->findAll();
 
         //Envoi des informations à la vue
-        return $this->render('stages.html.twig', ['controller_name' => 'ProstagesController', 'idEtu' => $idEtu,
+        return $this->render('prostages/stages.html.twig', ['controller_name' => 'ProstagesController', 'idEtu' => $idEtu,
                                                             'listeStages' => $listeStages,
                                                             'listeFormations' => $listeFormations]);
     }
     /**
-     * @Route("/entreprises/ajouter", name="prostagesEntreprisesForm")
+     * @Route("/prostages/entreprises/ajouter", name="prostagesEntreprisesForm")
      */
     public function affFormEntreprises(Request $requeteHttp, ObjectManager $manager)
     {
