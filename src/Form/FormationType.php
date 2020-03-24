@@ -14,7 +14,6 @@ class FormationType extends AbstractType
         $builder
             ->add('nom')
             ->add('diplome')
-            ->add('stage')
         ;
     }
 

@@ -41,5 +41,7 @@ security:
         - { path: '^/prostages/stages/stage-ajout', roles: IS_FULLY_AUTHENTICATED }
         - { path: '^/prostages', roles: [ROLE_ADMIN, ROLE_USER] }
         - { path: '^/login', roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: '^/formation/new', roles: ROLE_ADMIN}
+        - { path: '^/formation/[0-9]+/edit', roles: ROLE_ADMIN}
         # - { path: ^/admin, roles: ROLE_ADMIN }
         # - { path: ^/profile, roles: ROLE_USER }
