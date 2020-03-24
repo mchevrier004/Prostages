@@ -1,0 +1,10 @@
+easy_admin:
+    entities:
+        Formation:
+            class: App\Entity\Formation
+        Stage:
+            class: App\Entity\OffreStage
+        Entreprise:
+            class: App\Entity\Entreprise
+        Utilisateur:
+            class: App\Entity\User
