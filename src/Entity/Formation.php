@@ -38,6 +38,10 @@ class Formation
         $this->stage = new ArrayCollection();
     }
 
+    public function __tostring(){
+        return $this->getNom();
+    }
+
     public function getId(): ?int
     {
         return $this->id;

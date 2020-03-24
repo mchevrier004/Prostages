@@ -66,6 +66,10 @@ class OffreStage
         return $this->id;
     }
 
+    public function __tostring(){
+        return $this->getNom();
+    }
+
     public function getDescription(): ?string
     {
         return $this->Description;
